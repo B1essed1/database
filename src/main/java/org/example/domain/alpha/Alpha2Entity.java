@@ -16,9 +16,9 @@ public class Alpha2Entity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    @Column(unique = true)
     private String data;
 
+    @Column(unique = true)
     private Integer count;
 
     public Alpha2Entity(String data, Integer count) {

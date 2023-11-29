@@ -9,6 +9,8 @@ import org.example.repository.beta.BetaRepo;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Random;
+
 
 @Service
 public class TestService {
@@ -64,4 +66,42 @@ public class TestService {
         System.out.println("Success");
         return "Success";
     }
+
+    @Transactional("tb")
+    public void fuck() {
+       // gamma();
+        Random random = new Random();
+        Alpha2Entity alpha = new Alpha2Entity("NIXAO", random.nextInt(30));
+        BetaEntity beta = new BetaEntity("BLAA", random.nextInt(25));
+        try {
+            betaRepo.save(beta);
+
+        }catch (Exception e){
+            System.out.println("BBBBBBBBBB");
+        }
+        try {
+            alpha2Repo.save(alpha);
+        } catch (Exception e){
+            System.out.println("AAAAAAAAA");
+        }
+
+
+
+    }
+
+
+    private void gamma() {
+        Random random = new Random();
+        Alpha2Entity alpha = new Alpha2Entity("F*ckU", random.nextInt(30));
+        BetaEntity beta = new BetaEntity("ONICHAN", random.nextInt(25));
+        try {
+            // alpha2Repo.save(alpha);
+            betaRepo.save(beta);
+        } catch (Exception e) {
+        }
+
+
+    }
+
+
 }

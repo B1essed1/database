@@ -17,8 +17,10 @@ public class TestController {
 
     @GetMapping("/test")
     ResponseEntity<?> test() {
-        String response = service.test();
-        return ResponseEntity.ok(response);
+        for (int i = 0; i <100 ; i++) {
+            service.fuck();
+        }
+        return ResponseEntity.ok("response");
     }
 
     @GetMapping("/test2")

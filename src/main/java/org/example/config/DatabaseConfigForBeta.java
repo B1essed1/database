@@ -22,7 +22,7 @@ import java.util.Map;
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = "org.example.repository.beta",
         entityManagerFactoryRef = "betaEntityManagerFactory",
-        transactionManagerRef = "betaTransactionManager")
+        transactionManagerRef = "tb")
 public class DatabaseConfigForBeta {
 
     @Bean
@@ -55,7 +55,7 @@ public class DatabaseConfigForBeta {
     }
 
 //    @Primary
-    @Bean
+    @Bean("tb")
     public PlatformTransactionManager betaTransactionManager(
             final @Qualifier("betaEntityManagerFactory") LocalContainerEntityManagerFactoryBean betaEntityManagerFactory) {
         return new JpaTransactionManager(betaEntityManagerFactory.getObject());

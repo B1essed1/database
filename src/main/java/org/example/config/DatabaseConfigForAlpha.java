@@ -23,7 +23,7 @@ import java.util.Map;
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = "org.example.repository.alpha",
         entityManagerFactoryRef = "alphaEntityManagerFactory",
-        transactionManagerRef = "alphaTransactionManager")
+        transactionManagerRef = "ta")
 public class DatabaseConfigForAlpha {
 
     @Bean
@@ -56,7 +56,7 @@ public class DatabaseConfigForAlpha {
     }
 
     @Primary
-    @Bean
+    @Bean("ta")
     public PlatformTransactionManager alphaTransactionManager(
             final @Qualifier("alphaEntityManagerFactory") LocalContainerEntityManagerFactoryBean alphaEntityManagerFactory) {
         return new JpaTransactionManager(alphaEntityManagerFactory.getObject());
@@ -69,10 +69,10 @@ public class DatabaseConfigForAlpha {
     }
 
 
-    @Bean(name = "chainedTransactionManager")
+    @Bean(name = "tc")
     public ChainedTransactionManager chainedTransactionManager(
-            @Qualifier("alphaTransactionManager") PlatformTransactionManager firstTransactionManager,
-            @Qualifier("betaTransactionManager") PlatformTransactionManager secondTransactionManager) {
+            @Qualifier("ta") PlatformTransactionManager firstTransactionManager,
+            @Qualifier("tb") PlatformTransactionManager secondTransactionManager) {
         return new ChainedTransactionManager(firstTransactionManager, secondTransactionManager);
     }
 

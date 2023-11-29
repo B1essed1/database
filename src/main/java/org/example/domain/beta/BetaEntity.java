@@ -16,7 +16,6 @@ public class BetaEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true)
     private String data;
 
     private Integer count;
